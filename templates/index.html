@@ -39,7 +39,7 @@
         // Example: For Google Maps
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 37.773972, lng: -122.431297}, // New York City
+                center: {lat: 37.773972, lng: -122.431297}, // San Francisco
                 zoom: 13
             });
 
@@ -65,6 +65,16 @@
                 // Adjust the stroke weight based on the zoom level
                 var newStrokeWeight = 2 * Math.pow(2, zoomLevel - 12); // Adjust 12 as the base zoom level
                 street.setOptions({ strokeWeight: newStrokeWeight });
+            });
+            infoWindow = new google.maps.InfoWindow({
+                content: '<div><strong>Street Information</strong><br>This is the street.</div>'
+            });
+
+            // Listen for click event on the map
+            google.maps.event.addListener(street, 'click', function(event) {
+                // Open the info window at the clicked location
+                infoWindow.setPosition(event.latLng);
+                infoWindow.open(map);
             });
         }
     </script>
