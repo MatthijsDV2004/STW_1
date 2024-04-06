@@ -54,4 +54,7 @@ print("End !")
 @app.route('/')
 def index():
     return render_template('index.html')
+@app.route('/directions')
+def directions():
+    return render_template('FrontEnd.html')
 
