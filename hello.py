@@ -4,7 +4,6 @@ from flask_bootstrap import Bootstrap5
 
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
-print("Start !")
 filtered_data = []
 # Define the API endpoint URL
 url = "https://data.sfgov.org/resource/wg3w-h783.json"
@@ -12,6 +11,8 @@ url = "https://data.sfgov.org/resource/wg3w-h783.json"
 # Make a GET request to the API endpoint
 response = requests.get(url)
 new_dict = {}
+print("Start !")
+
 # Check if the request was successful (status code 200)
 if response.status_code == 200:
     # Parse the JSON response
