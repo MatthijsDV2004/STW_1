@@ -1,4 +1,9 @@
 import requests
+from flask import Flask, render_template, request
+from flask_bootstrap import Bootstrap5
+
+app = Flask(__name__)
+bootstrap = Bootstrap5(app)
 print("Start !")
 filtered_data = []
 # Define the API endpoint URL
@@ -45,4 +50,7 @@ for i in filtered_data:
     print(i)
 
 print("End !")
+@app.route('/')
+def index():
+    return render_template('index.html')
 
