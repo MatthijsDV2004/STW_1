@@ -31,18 +31,26 @@ if response.status_code == 200:
                 'latitude': i['latitude'] 
             }
             filtered_data.append(new_dict)
-    # Print the first few records
-    # for i in data:
-        # for key,value in i.items():  # Print the first 5 records for demonstration
-                # print(key,":" , value)
-            # if(key == "incident_category"):
-                # dict =  {
-                #             "incident_category" : key[incident_category],
-                #             'longitude': key[longitude],  
-                #             'latitude': key[latitude] 
-                #         }
-                # filtered_data.append(dict)
             
+    colors = {
+            'Rape': '#8B0000',
+            'Arson': '#FF0000',
+            'Robbery': '#DC143C',
+            'Burglary': '#B22222',
+            'Malicious Theft': '#FF4500',
+            'Assault': '#FFA500',
+            'Suspicious Occurrence': '#FF8C00',
+            'Larceny Theft': '#FFD700',
+            'Fraud': '#FFFF00',
+            'Vandalism': '#32CD32',
+            'Missing Person': '#90EE90',
+            'Disorderly Conduct': '#98FB98',
+            'Fire Report': '#87CEEB',
+            'Other Offenses': '#B0E0E6',
+            'Warrant': '#778899',
+            'Other Miscellaneous': '#DCDCDC',
+            'Lost Property': '#E6E6FA'
+        }
 
 else:
     print("Error:", response.status_code)
