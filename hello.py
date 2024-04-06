@@ -29,7 +29,7 @@ if response.status_code == 200:
                 'longitude': i['longitude'],  
                 'latitude': i['latitude'] 
             }
-        filtered_data.append(new_dict)
+            filtered_data.append(new_dict)
     # Print the first few records
     # for i in data:
         # for key,value in i.items():  # Print the first 5 records for demonstration
