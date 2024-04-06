@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # URL of the webpage to scrape
-url = 'https://pizzaboccalupo.com'
+url = 'https://appwrite.io/'
 
 # Send a GET request to fetch the webpage content
 response = requests.get(url)
@@ -14,10 +14,10 @@ if response.status_code == 200:
     
     # Find specific elements on the webpage using BeautifulSoup's methods
     # For example, let's extract all the <h2> tags from the webpage
-    headings = soup.find_all('h2')
+    elements_with_hello_class = soup.find_all(class_='web-main-header is-special-padding theme-dark is-transparent svelte-go26dj')
     
     # Print the text content of each <h2> tag
-    for heading in headings:
-        print(heading.text)
+    for i in elements_with_hello_class:
+        print(i.text)
 else:
     print('Failed to retrieve webpage. Status code:', response.status_code)
