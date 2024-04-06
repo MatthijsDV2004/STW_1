@@ -6,5 +6,5 @@ bootstrap = Bootstrap5(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html', slidephoto=slidephoto, slidetext = slidetext)
+    return render_template('index.html')
 
