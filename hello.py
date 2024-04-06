@@ -13,10 +13,10 @@ if response.status_code == 200:
     soup = BeautifulSoup(response.text, 'html.parser')
     
     # Find specific elements on the webpage using BeautifulSoup's methods
-    # For example, let's extract all the <h1> tags from the webpage
+    # For example, let's extract all the <h2> tags from the webpage
     headings = soup.find_all('h2')
     
-    # Print the text content of each <h1> tag
+    # Print the text content of each <h2> tag
     for heading in headings:
         print(heading.text)
 else:
