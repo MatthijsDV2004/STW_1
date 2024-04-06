@@ -38,8 +38,7 @@
         // Your map initialization script would go here
         // Example: For Google Maps
         var filteredData = JSON.parse('{{ filtered_data | safe }}');
-        
-     
+
         function initMap() {
             console.log(filteredData);
             
@@ -63,7 +62,18 @@
 
             // Set the map for the polyline
             street.setMap(map);
-        }
+
+            var allMarkers = []
+            filteredData.forEach(function(filteredData) {
+            var marker = new google.maps.Marker({
+            position: {lat: parseFloat(filteredData.latitude), lng: parseFloat( filteredData.longitude)},
+            map: map,
+            title:filteredData.incident_category
+            });
+            allMarkers.push(marker); // Add the marker to the array
+            });
+            console.log(allMarkers)
+            }
             
             google.maps.event.addListener(map, 'zoom_changed', function() {
                 var zoomLevel = map.getZoom();
