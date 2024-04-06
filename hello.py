@@ -34,6 +34,27 @@ def get_filtered_data():
 
     return filtered_data
 
+colors = {
+            'Rape': '#8B0000',
+            'Arson': '#FF0000',
+            'Robbery': '#DC143C',
+            'Burglary': '#B22222',
+            'Malicious Theft': '#FF4500',
+            'Assault': '#FFA500',
+            'Suspicious Occurrence': '#FF8C00',
+            'Larceny Theft': '#FFD700',
+            'Fraud': '#FFFF00',
+            'Vandalism': '#32CD32',
+            'Missing Person': '#90EE90',
+            'Disorderly Conduct': '#98FB98',
+            'Fire Report': '#87CEEB',
+            'Other Offenses': '#B0E0E6',
+            'Warrant': '#778899',
+            'Other Miscellaneous': '#DCDCDC',
+            'Lost Property': '#E6E6FA'
+        }
+
+
 @app.route('/')
 def index():
     filtered_data = get_filtered_data()
