@@ -43,7 +43,7 @@ def index():
 def directions():
     filtered_data = get_filtered_data()
 
-    return render_template('FrontEnd.html',filtered_data=json.dumps(filtered_data))
+    return render_template('directions.html',filtered_data=json.dumps(filtered_data))
 
 if __name__ == '__main__':
     app.run(debug=True)
