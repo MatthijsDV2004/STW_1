@@ -58,7 +58,7 @@ colors = {
 @app.route('/')
 def index():
     filtered_data = get_filtered_data()
-    return render_template('index.html', filtered_data=json.dumps(filtered_data))
+    return render_template('index.html', filtered_data=json.dumps(filtered_data), colors =json.dumps(colors))
 
 @app.route('/directions')
 def directions():

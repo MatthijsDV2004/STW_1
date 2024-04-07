@@ -37,6 +37,7 @@
         // Your map initialization script would go here
         // Example: For Google Maps
         var filteredData = JSON.parse('{{ filtered_data | safe }}');
+        var hues = JSON.parse('{{colors | safe}}');
         var infoWindows = [];
 
         function initMap() {
@@ -56,7 +57,7 @@
                         {lat: parseFloat(filteredData[i]['latitude']), lng: parseFloat(filteredData[i]['longitude'])},
                         {lat: parseFloat(filteredData[i]['latitude']), lng: parseFloat(filteredData[i]['longitude'])}  
                     ],
-                    strokeColor: '#FF0000', // Red color for crossing out
+                    strokeColor: hues[filteredData[i][incident_category]],
                     strokeOpacity: 5.0,
                     strokeWeight: 13,
                     map: map // Set the map for the polyline
