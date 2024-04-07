@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map Service</title>
-    <a href="/directions">Directions</a>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,8 +37,8 @@
         // Your map initialization script would go here
         // Example: For Google Maps
         var filteredData = JSON.parse('{{ filtered_data | safe }}');
-        
-     
+        var infoWindows = [];
+
         function initMap() {
             console.log(filteredData);
             
@@ -52,35 +51,48 @@
             // Create the polyline
             for (var i = 0; i < filteredData.length; i++) {
                 var street = new google.maps.Polyline({
-                path: [
-                {lat:parseFloat(filteredData[i]['latitude']), lng: parseFloat(filteredData[i]['longitude'])}, {lat:parseFloat(filteredData[i]['latitude']), lng: parseFloat(filteredData[i]['longitude'])}  
-            ],
-                strokeColor: '#FF0000', // Red color for crossing out
-                strokeOpacity: 5.0,
-                strokeWeight: 4
-                
-            });
+                    path: [
+                        {lat: parseFloat(filteredData[i]['latitude']), lng: parseFloat(filteredData[i]['longitude'])},
+                        {lat: parseFloat(filteredData[i]['latitude']), lng: parseFloat(filteredData[i]['longitude'])}  
+                    ],
+                    strokeColor: '#FF0000', // Red color for crossing out
+                    strokeOpacity: 5.0,
+                    strokeWeight: 13,
+                    map: map // Set the map for the polyline
+                });
 
-            // Set the map for the polyline
-            street.setMap(map);
-        }
-            
+                var infoWindow = new google.maps.InfoWindow({
+                    content: '<div><strong>' + filteredData[i]["incident_category"] + '</strong><br>' + filteredData[i]["incident_description"] + '</div>'
+                });
+
+                // Add click event listener to open info window for each street
+                addInfoWindowClickListener(street, infoWindow, map);
+                infoWindows.push(infoWindow);
+            }
+
             google.maps.event.addListener(map, 'zoom_changed', function() {
                 var zoomLevel = map.getZoom();
                 // Adjust the stroke weight based on the zoom level
                 var newStrokeWeight = 2 * Math.pow(2, zoomLevel - 12); // Adjust 12 as the base zoom level
                 street.setOptions({ strokeWeight: newStrokeWeight });
             });
-            infoWindow = new google.maps.InfoWindow({
-                content: '<div><strong>Street Information</strong><br>This is the street.</div>'
-            });
+        }
 
-            // Listen for click event on the map
+        function addInfoWindowClickListener(street, infoWindow, map) {
             google.maps.event.addListener(street, 'click', function(event) {
+                // Close any previously opened info windows
+                closeAllInfoWindows();
                 // Open the info window at the clicked location
                 infoWindow.setPosition(event.latLng);
                 infoWindow.open(map);
             });
+        }
+
+        function closeAllInfoWindows() {
+            // Close all info windows
+            for (var i = 0; i < infoWindows.length; i++) {
+                infoWindows[i].close();
+            }
         }
     </script>
     <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
